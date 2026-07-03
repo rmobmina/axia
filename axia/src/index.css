@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/*
+ * Axia design tokens.
+ *
+ * Brand palette (provided):
+ *   #0B2545  navy-950 — deepest anchor (app shell, sidebar, strong headings)
+ *   #13315C  navy-800 — primary dark surface / hover
+ *   #134074  navy-700 — primary CTAs, selected states, links
+ *   #8DA9C4  mist-400 — secondary accents, chips, chart support
+ *   #EEF4ED  paper    — calm page background
+ *
+ * Chart series colors are derived from the brand hues but tuned for
+ * data-vis legibility (lightness band + chroma floor + CVD separation,
+ * validated with the dataviz palette validator):
+ *   chart-1 #3B72B5 · chart-2 #67A3E8 · chart-3 #2F9E8F
+ */
+@theme {
+  --font-sans:
+    ui-sans-serif, -apple-system, "SF Pro Text", "Segoe UI", Inter, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Brand navy ramp */
+  --color-navy-950: #0b2545;
+  --color-navy-800: #13315c;
+  --color-navy-700: #134074;
+  --color-navy-600: #1a4f8c;
+  --color-navy-500: #2a62a6;
+
+  /* Mist ramp (tints of #8DA9C4) */
+  --color-mist-600: #5f80a1;
+  --color-mist-500: #7495b3;
+  --color-mist-400: #8da9c4;
+  --color-mist-300: #aec2d6;
+  --color-mist-200: #cedce8;
+  --color-mist-100: #e4ecf3;
+  --color-mist-50: #f2f6fa;
+
+  /* Calm paper background */
+  --color-paper: #eef4ed;
+
+  /* Ink (navy-tinted text scale) */
+  --color-ink-900: #142138;
+  --color-ink-600: #44546e;
+  --color-ink-400: #6e7f96;
+
+  /* Chart series (validated) */
+  --color-chart-1: #3b72b5;
+  --color-chart-2: #67a3e8;
+  --color-chart-3: #2f9e8f;
+
+  /* Status — reserved, never used as chart series */
+  --color-good-700: #256b4f;
+  --color-good-600: #2e7d5b;
+  --color-good-100: #ddeee5;
+  --color-warn-700: #8f5b1d;
+  --color-warn-600: #a66a21;
+  --color-warn-100: #f6ead3;
+  --color-alert-700: #9e3b33;
+  --color-alert-600: #b4453c;
+  --color-alert-100: #f7e0de;
+
+  --shadow-card: 0 1px 2px rgb(11 37 69 / 0.05), 0 3px 12px rgb(11 37 69 / 0.06);
+  --shadow-card-lg: 0 2px 4px rgb(11 37 69 / 0.06), 0 10px 30px rgb(11 37 69 / 0.1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink-600;
+  }
+
+  /* Accessible, brand-consistent focus rings everywhere */
+  :focus-visible {
+    outline: 3px solid var(--color-navy-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-mist-200);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
